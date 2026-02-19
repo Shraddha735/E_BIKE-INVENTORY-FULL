@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
-import AdminLayout from "../components/layout/AdminLayout";
 import {
   Typography,
   Box,
@@ -46,7 +45,7 @@ function Reports() {
         0
       );
 
-      // ✅ Monthly revenue grouping
+      // Monthly revenue grouping
       const monthly = {};
 
       sales.forEach((sale) => {
@@ -86,7 +85,7 @@ function Reports() {
   );
 
   return (
-    <AdminLayout>
+    <>
       <Typography variant="h4" sx={{ mb: 4 }}>
         Reports Overview
       </Typography>
@@ -98,7 +97,6 @@ function Reports() {
         <ReportCard title="Total Customers" value={report.totalCustomers} />
       </Box>
 
-      {/* Monthly Revenue Table */}
       <Paper sx={{ mt: 4 }}>
         <Typography variant="h6" sx={{ p: 2 }}>
           Monthly Revenue
@@ -122,8 +120,7 @@ function Reports() {
           </TableBody>
         </Table>
       </Paper>
-
-    </AdminLayout>
+    </>
   );
 }
 

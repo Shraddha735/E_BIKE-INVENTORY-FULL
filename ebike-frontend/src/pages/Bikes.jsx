@@ -56,14 +56,18 @@ function Bikes() {
 
   const handleSubmit = async () => {
     try {
-      const data = new FormData();
+      let data;
 
-      Object.keys(formData).forEach((key) => {
-        data.append(key, formData[key]);
-      });
-
+      // Only use FormData if image exists
       if (image) {
+        data = new FormData();
+        Object.keys(formData).forEach((key) => {
+          data.append(key, formData[key]);
+        });
         data.append("image", image);
+      } else {
+        //  Otherwise send normal JSON
+        data = formData;
       }
 
       if (editId) {
@@ -73,6 +77,7 @@ function Bikes() {
         await axios.post("/bikes", data);
       }
 
+      // Reset form
       setFormData({
         bikeId: "",
         name: "",

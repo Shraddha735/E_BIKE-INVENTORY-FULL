@@ -1,80 +1,5 @@
-/* import { Box, Paper, TextField, Button, Typography } from "@mui/material";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "../api/axios";
-
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  const handleLogin = async () => {
-    try {
-      const res = await axios.post("/auth/login", {
-        email,
-        password
-      });
-
-      if (res.data.success) {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("role", res.data.role);
-
-        // 🔐 Proper Role Redirect
-        if (res.data.role === "ADMIN") {
-          navigate("/dashboard");
-        } else if (res.data.role === "STAFF") {
-          navigate("/staff-dashboard");
-        } else {
-          navigate("/login");
-        }
-      }
-
-    } catch (error) {
-      alert(error.response?.data?.message || "Login failed");
-    }
-  };
-
-  return (
-    <Box sx={{ display: "flex", justifyContent: "center", mt: 10 }}>
-      <Paper sx={{ p: 4, width: 350 }}>
-        <Typography variant="h6" align="center">
-          E-Bike Inventory Login
-        </Typography>
-
-        <TextField
-          fullWidth
-          label="Email"
-          sx={{ mt: 3 }}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <TextField
-          fullWidth
-          label="Password"
-          type="password"
-          sx={{ mt: 2 }}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <Button
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3 }}
-          onClick={handleLogin}
-        >
-          LOGIN
-        </Button>
-      </Paper>
-    </Box>
-  );
-}
-
-export default Login;*/
-
-
 import bgImage from "../assets/ebike.jpg";
+
 import { Box, Paper, TextField, Button, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -116,10 +41,10 @@ function Login() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c6?auto=format&fit=crop&w=1600&q=80')",
+        backgroundImage: `url(${bgImage})`,   // ✅ using your local image
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
         position: "relative"
       }}
     >
@@ -143,7 +68,6 @@ function Login() {
           backgroundColor: "rgba(255,255,255,0.95)"
         }}
       >
-        {/* Title Section */}
         <Typography variant="h4" align="center" fontWeight="bold">
           InnovaBike
         </Typography>
@@ -156,7 +80,6 @@ function Login() {
           E-Bike Inventory System
         </Typography>
 
-        {/* Form Fields */}
         <TextField
           fullWidth
           label="Email"
